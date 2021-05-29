@@ -1,3 +1,4 @@
+/*Katherine Caceros Proyecto 4*/
 /*************************************************************************************************
   ESP32 Web Server
   Ejemplo de creación de Web server 
@@ -94,12 +95,21 @@ void handle_Data() {                          //se envia la data y se concatena 
 //************************************************************************************************
 // Procesador de HTML
 //************************************************************************************************
-String SendHTML(void) {
+String SendHTML(void) { 
   String ptr = "<!DOCTYPE html>\n";
   ptr = "<html>\n";
   ptr += "<body>\n";
+  ptr +="<body style=\"background-color:#E6E6FA;\">\n";
+  ptr +="</body>\n";
   ptr += "<h1>Proyecto 4: Estacionamientos</h1>\n";
-  ptr += "<h3>Katherine Caceros 18307</h3>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
   ptr += "<canvas id=\"Parqueo 1\" width=\"150\" height=\"150\" style=\"border:0px solid #000000;\">\n";
   ptr += "</canvas>\n";
   ptr += "<canvas id=\"Parqueo 2\" width=\"150\" height=\"150\" style=\"border:0px solid #000000;\">\n";
@@ -108,12 +118,31 @@ String SendHTML(void) {
   ptr += "</canvas>\n";
   ptr += "<canvas id=\"Parqueo 4\" width=\"150\" height=\"150\" style=\"border:0px solid #000000;\">\n";
   ptr += "</canvas>\n";
-  ptr += "<canvas id=\"Cantidad\" width=\"825\" height=\"40\" style=\"border:0px solid #000000;\">\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
   ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"0\" width=\"75\" height=\"75\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<canvas id=\"Cantidad\" width=\"700\" height=\"40\" style=\"border:0px solid #000000;\">\n";
+  ptr += "</canvas>\n";
+  ptr += "<h4>Katherine Caceros 18307</h4>\n";
   ptr += "<script>\n";
   
-  ptr += "function boton(n_parqueo, valor){\n";
-  ptr += "var canvas = document.getElementById(n_parqueo);\n";
+  ptr += "function boton(n_espacios, valor){\n"; 
+  ptr += "var canvas = document.getElementById(n_espacios);\n";
   ptr += "var ctx = canvas.getContext(\"2d\");\n";
   ptr += "if (valor == 0){\n";
   ptr += "ctx.fillStyle = \"#4290f5\";\n";
@@ -121,20 +150,20 @@ String SendHTML(void) {
   ptr += "if (valor == 1){\n";
   ptr += "ctx.fillStyle = \"#fc0303\";\n";
   ptr += "};\n";
-  ptr += "ctx.fillRect(0,0,200,100);\n";
+  ptr += "ctx.fillRect(50,0,200,100);\n";
   ptr += "ctx.fillStyle = \"#000000\";\n";
   ptr += "ctx.font = \"20px Candara\";\n";
-  ptr += "ctx.fillText(n_parqueo, 28, 60);\n";
+  ptr += "ctx.fillText(n_espacios, 55, 50);\n";
   ptr += "};\n";
   
   ptr += "function Estacionamiento(cantidad){\n";
   ptr += "var canvas = document.getElementById(\"Cantidad\");\n";
   ptr += "var ctx = canvas.getContext(\"2d\");\n";
-  ptr += "ctx.fillStyle = \"#FFFFFF\";\n";
+  ptr += "ctx.fillStyle = \"#E6E6FA\";\n";
   ptr += "ctx.fillRect(0,0,825,40);\n";
   ptr += "ctx.fillStyle = \"#000000\";\n";
   ptr += "ctx.font = \"30px Candara\";\n";
-  ptr += "ctx.fillText(\"Estacionamientos disponibles: \" + cantidad.toString(), 0,30);\n";
+  ptr += "ctx.fillText(\"Estacionamientos disponibles: \" + cantidad.toString(), 125,30);\n";
   ptr += "};\n";
   
   ptr += "Estacionamiento(4);\n";
@@ -144,7 +173,7 @@ String SendHTML(void) {
   ptr += "boton(\"Parqueo 4\", 0);\n";
   ptr += "var sendHttpRequest = function(){\n";
   ptr += "var xhr = new XMLHttpRequest();\n";
-  ptr += "xhr.open(\"GET\", \"http://192.168.0.5/datos\");\n";
+  ptr += "xhr.open(\"GET\", \"http://192.168.0.7/datos\");\n";
   ptr += "xhr.responseType = \'json\';\n";
   
   ptr += "xhr.onload = function() {\n";
@@ -163,13 +192,18 @@ String SendHTML(void) {
   ptr += "},1);\n";
   ptr += "</script>\n";
   ptr += "</body>\n";
-  ptr += "</html>\n";
+  ptr += "</html>\n"; 
+
+  ptr += "<style>\n";
+  ptr += "h1{text-align: center;}\n";
+  ptr += "h4{text-align: center;}\n";
+  ptr += "<style>\n";
   return ptr;
 }
 //************************************************************************************************
 // Handler de not found
 //************************************************************************************************
-void handle_NotFound() {
+void handle_NotFound() { //
   server.send(404, "text/plain", "Not found");
 }
 String data_json(void){
